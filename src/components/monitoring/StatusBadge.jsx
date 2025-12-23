@@ -1,10 +1,4 @@
-import { cn } from '@/lib/utils';
-import type { ProcessStatus } from '@/data/mockProcesses';
-
-interface StatusBadgeProps {
-  status: ProcessStatus;
-  className?: string;
-}
+import { cn } from '../../lib/utils.js';
 
 const statusConfig = {
   success: {
@@ -25,7 +19,7 @@ const statusConfig = {
   },
 };
 
-export function StatusBadge({ status, className }: StatusBadgeProps) {
+export function StatusBadge({ status, className }) {
   const config = statusConfig[status];
   
   return (

@@ -1,14 +1,4 @@
-import { cn } from '@/lib/utils';
-import { LucideIcon } from 'lucide-react';
-
-interface SummaryCardProps {
-  title: string;
-  value: number;
-  icon: LucideIcon;
-  variant: 'success' | 'error' | 'warning' | 'neutral';
-  onClick?: () => void;
-  isActive?: boolean;
-}
+import { cn } from '../../lib/utils.js';
 
 const variantStyles = {
   success: 'border-l-4 border-l-success hover:bg-success/5',
@@ -24,7 +14,7 @@ const iconStyles = {
   neutral: 'text-primary',
 };
 
-export function SummaryCard({ title, value, icon: Icon, variant, onClick, isActive }: SummaryCardProps) {
+export function SummaryCard({ title, value, icon: Icon, variant, onClick, isActive }) {
   return (
     <button
       onClick={onClick}

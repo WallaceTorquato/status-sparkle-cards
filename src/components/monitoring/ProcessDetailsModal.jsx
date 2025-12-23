@@ -3,20 +3,13 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { StatusBadge } from './StatusBadge';
-import type { Process } from '@/data/mockProcesses';
+} from '../ui/dialog.jsx';
+import { StatusBadge } from './StatusBadge.jsx';
 import { AlertCircle, Clock, Tag, FileText } from 'lucide-react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-interface ProcessDetailsModalProps {
-  process: Process | null;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}
-
-export function ProcessDetailsModal({ process, open, onOpenChange }: ProcessDetailsModalProps) {
+export function ProcessDetailsModal({ process, open, onOpenChange }) {
   if (!process) return null;
 
   return (
