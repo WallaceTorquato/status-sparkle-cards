@@ -1,23 +1,12 @@
 import { Search, Filter } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { Input } from '../ui/input.jsx';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import type { ProcessStatus } from '@/data/mockProcesses';
-
-interface FilterBarProps {
-  searchTerm: string;
-  onSearchChange: (value: string) => void;
-  categoryFilter: string;
-  onCategoryChange: (value: string) => void;
-  statusFilter: ProcessStatus | 'all';
-  onStatusChange: (value: ProcessStatus | 'all') => void;
-  categories: string[];
-}
+} from '../ui/select.jsx';
 
 export function FilterBar({
   searchTerm,
@@ -27,7 +16,7 @@ export function FilterBar({
   statusFilter,
   onStatusChange,
   categories,
-}: FilterBarProps) {
+}) {
   return (
     <div className="flex flex-col sm:flex-row gap-3 p-4 bg-card rounded-lg shadow-sm">
       <div className="relative flex-1">
@@ -56,7 +45,7 @@ export function FilterBar({
           </SelectContent>
         </Select>
         
-        <Select value={statusFilter} onValueChange={(v) => onStatusChange(v as ProcessStatus | 'all')}>
+        <Select value={statusFilter} onValueChange={onStatusChange}>
           <SelectTrigger className="w-[140px]">
             <SelectValue placeholder="Status" />
           </SelectTrigger>

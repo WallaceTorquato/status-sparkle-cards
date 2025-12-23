@@ -1,23 +1,3 @@
-export type ProcessStatus = 'success' | 'error' | 'warning' | 'pending';
-
-export interface ProcessHistory {
-  id: string;
-  timestamp: Date;
-  status: ProcessStatus;
-  message: string;
-}
-
-export interface Process {
-  id: string;
-  name: string;
-  description: string;
-  status: ProcessStatus;
-  lastUpdate: Date;
-  errorMessage?: string;
-  history: ProcessHistory[];
-  category: string;
-}
-
 const categories = [
   'Sincronização',
   'API',
@@ -47,8 +27,8 @@ const processNames = [
   'Log Aggregator',
 ];
 
-function generateHistory(processId: string): ProcessHistory[] {
-  const statuses: ProcessStatus[] = ['success', 'error', 'warning', 'pending'];
+function generateHistory(processId) {
+  const statuses = ['success', 'error', 'warning', 'pending'];
   const messages = {
     success: 'Processo executado com sucesso',
     error: 'Falha na execução do processo',
@@ -56,7 +36,7 @@ function generateHistory(processId: string): ProcessHistory[] {
     pending: 'Processo aguardando execução',
   };
   
-  const history: ProcessHistory[] = [];
+  const history = [];
   const count = Math.floor(Math.random() * 10) + 5;
   
   for (let i = 0; i < count; i++) {
@@ -72,7 +52,7 @@ function generateHistory(processId: string): ProcessHistory[] {
   return history.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
 }
 
-function generateErrorMessage(status: ProcessStatus): string | undefined {
+function generateErrorMessage(status) {
   if (status !== 'error') return undefined;
   
   const errors = [
@@ -89,9 +69,9 @@ function generateErrorMessage(status: ProcessStatus): string | undefined {
   return errors[Math.floor(Math.random() * errors.length)];
 }
 
-export function generateMockProcesses(count: number = 60): Process[] {
-  const statuses: ProcessStatus[] = ['success', 'error', 'warning', 'pending'];
-  const processes: Process[] = [];
+export function generateMockProcesses(count = 60) {
+  const statuses = ['success', 'error', 'warning', 'pending'];
+  const processes = [];
   
   for (let i = 0; i < count; i++) {
     const status = statuses[Math.floor(Math.random() * statuses.length)];

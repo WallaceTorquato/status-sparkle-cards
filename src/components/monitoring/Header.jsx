@@ -1,13 +1,7 @@
 import { Activity, RefreshCw } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../ui/button.jsx';
 
-interface HeaderProps {
-  onRefresh: () => void;
-  isRefreshing: boolean;
-  lastRefresh: Date;
-}
-
-export function Header({ onRefresh, isRefreshing, lastRefresh }: HeaderProps) {
+export function Header({ onRefresh, isRefreshing, lastRefresh }) {
   return (
     <header className="bg-primary text-primary-foreground py-6 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">

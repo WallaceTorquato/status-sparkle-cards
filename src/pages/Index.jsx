@@ -1,11 +1,11 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
-import { Header } from '@/components/monitoring/Header';
-import { SummaryCard } from '@/components/monitoring/SummaryCard';
-import { FilterBar } from '@/components/monitoring/FilterBar';
-import { ProcessCard } from '@/components/monitoring/ProcessCard';
-import { ProcessDetailsModal } from '@/components/monitoring/ProcessDetailsModal';
-import { ProcessHistoryModal } from '@/components/monitoring/ProcessHistoryModal';
-import { generateMockProcesses, type Process, type ProcessStatus } from '@/data/mockProcesses';
+import { Header } from '../components/monitoring/Header.jsx';
+import { SummaryCard } from '../components/monitoring/SummaryCard.jsx';
+import { FilterBar } from '../components/monitoring/FilterBar.jsx';
+import { ProcessCard } from '../components/monitoring/ProcessCard.jsx';
+import { ProcessDetailsModal } from '../components/monitoring/ProcessDetailsModal.jsx';
+import { ProcessHistoryModal } from '../components/monitoring/ProcessHistoryModal.jsx';
+import { generateMockProcesses } from '../data/mockProcesses.js';
 import { CheckCircle, XCircle, AlertTriangle, Clock } from 'lucide-react';
 import {
   Pagination,
@@ -14,19 +14,19 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination';
+} from '../components/ui/pagination.jsx';
 
 const ITEMS_PER_PAGE = 12;
 
 const Index = () => {
-  const [processes, setProcesses] = useState<Process[]>(() => generateMockProcesses(60));
+  const [processes, setProcesses] = useState(() => generateMockProcesses(60));
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [statusFilter, setStatusFilter] = useState<ProcessStatus | 'all'>('all');
+  const [statusFilter, setStatusFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [lastRefresh, setLastRefresh] = useState(new Date());
-  const [selectedProcess, setSelectedProcess] = useState<Process | null>(null);
+  const [selectedProcess, setSelectedProcess] = useState(null);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
 
@@ -77,7 +77,7 @@ const Index = () => {
       setProcesses((prev) => {
         const newProcesses = [...prev];
         const randomIndex = Math.floor(Math.random() * newProcesses.length);
-        const statuses: ProcessStatus[] = ['success', 'error', 'warning', 'pending'];
+        const statuses = ['success', 'error', 'warning', 'pending'];
         const newStatus = statuses[Math.floor(Math.random() * statuses.length)];
         
         newProcesses[randomIndex] = {
@@ -98,17 +98,17 @@ const Index = () => {
     setCurrentPage(1);
   }, [searchTerm, categoryFilter, statusFilter]);
 
-  const handleViewDetails = (process: Process) => {
+  const handleViewDetails = (process) => {
     setSelectedProcess(process);
     setDetailsModalOpen(true);
   };
 
-  const handleViewHistory = (process: Process) => {
+  const handleViewHistory = (process) => {
     setSelectedProcess(process);
     setHistoryModalOpen(true);
   };
 
-  const handleStatusFilter = (status: ProcessStatus | 'all') => {
+  const handleStatusFilter = (status) => {
     setStatusFilter((prev) => (prev === status ? 'all' : status));
   };
 

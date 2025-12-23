@@ -3,21 +3,14 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { StatusBadge } from './StatusBadge';
-import type { Process } from '@/data/mockProcesses';
+} from '../ui/dialog.jsx';
+import { StatusBadge } from './StatusBadge.jsx';
 import { History, Clock } from 'lucide-react';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { ScrollArea } from '../ui/scroll-area.jsx';
 
-interface ProcessHistoryModalProps {
-  process: Process | null;
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}
-
-export function ProcessHistoryModal({ process, open, onOpenChange }: ProcessHistoryModalProps) {
+export function ProcessHistoryModal({ process, open, onOpenChange }) {
   if (!process) return null;
 
   return (
@@ -38,7 +31,7 @@ export function ProcessHistoryModal({ process, open, onOpenChange }: ProcessHist
           
           <ScrollArea className="h-[400px] pr-4">
             <div className="space-y-3">
-              {process.history.map((entry, index) => (
+              {process.history.map((entry) => (
                 <div
                   key={entry.id}
                   className="flex items-start gap-3 p-3 bg-secondary rounded-lg"

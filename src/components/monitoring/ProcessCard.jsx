@@ -1,17 +1,10 @@
-import { Card } from '@/components/ui/card';
-import { StatusBadge } from './StatusBadge';
-import type { Process } from '@/data/mockProcesses';
+import { Card } from '../ui/card.jsx';
+import { StatusBadge } from './StatusBadge.jsx';
 import { Clock, AlertCircle, History } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
-interface ProcessCardProps {
-  process: Process;
-  onViewDetails: (process: Process) => void;
-  onViewHistory: (process: Process) => void;
-}
-
-export function ProcessCard({ process, onViewDetails, onViewHistory }: ProcessCardProps) {
+export function ProcessCard({ process, onViewDetails, onViewHistory }) {
   return (
     <Card className="p-4 hover:shadow-md transition-shadow duration-200 bg-card">
       <div className="flex items-start justify-between mb-3">
