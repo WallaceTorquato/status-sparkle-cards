@@ -114,7 +114,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header lastRefresh={lastRefresh} />
+      <Header onRefresh={handleRefresh} isRefreshing={isRefreshing} lastRefresh={lastRefresh} />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* Summary Cards */}
